@@ -2,6 +2,12 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/mee/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/others/")
 
+;; To prevent modes from using tabs
+(add-hook 'after-change-major-mode-hook 
+          '(lambda () 
+             (setq-default indent-tabs-mode nil)
+             (setq c-basic-indent 4)
+             (setq tab-width 4)))
 
 
 ;; Mumamo is making emacs 23.3 freak out:
@@ -10,8 +16,8 @@
 																'font-lock-beginning-of-syntax-function))
 
 (eval-after-load "bytecomp"
-    '(add-to-list 'byte-compile-not-obsolete-vars
-                  'font-lock-syntactic-keywords))
+		'(add-to-list 'byte-compile-not-obsolete-vars
+																'font-lock-syntactic-keywords))
 
 ;; tramp-compat.el clobbers this variable!
 (eval-after-load "tramp-compat"
@@ -22,9 +28,9 @@
 ;; set font size
 (set-face-attribute 'default nil :height 140)
 
+
 ;; change tab to 2 spaces
 (setq default-tab-width 1)
-
 
 
 ;; yaml mode
