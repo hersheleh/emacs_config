@@ -2,6 +2,13 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/mee/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/others/")
 
+
+;; Csharp Mode
+(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# cod." t)
+(setq auto-mode-alist
+      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
+
+
 ;; To prevent modes from using tabs
 (add-hook 'after-change-major-mode-hook 
           '(lambda () 
@@ -13,16 +20,16 @@
 ;; Mumamo is making emacs 23.3 freak out:
 (eval-after-load "bytecomp"
   '(add-to-list 'byte-compile-not-obsolete-vars
-																'font-lock-beginning-of-syntax-function))
+                'font-lock-beginning-of-syntax-function))
 
 (eval-after-load "bytecomp"
 		'(add-to-list 'byte-compile-not-obsolete-vars
-																'font-lock-syntactic-keywords))
+                      'font-lock-syntactic-keywords))
 
 ;; tramp-compat.el clobbers this variable!
 (eval-after-load "tramp-compat"
   '(add-to-list 'byte-compile-not-obsolete-vars
-																'font-lock-beginning-of-syntax-function))
+                'font-lock-beginning-of-syntax-function))
 
 
 ;; set font size
@@ -52,6 +59,8 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
+
+
 
 ;; load color themes and set color theme euphoria
 ;; (require 'color-theme)
